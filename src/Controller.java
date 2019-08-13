@@ -126,8 +126,7 @@ public class Controller {
 
     public void calculateGpaButton(){
         try{
-            double gpa = gpaCalculatorModel.calculateGpa(lectures);
-            gpaTextField.setText(String.format("%.2f", gpa));
+            gpaCalculatorModel.calculateGpa(lectures, gpaTextField);
         }catch (NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Hata");

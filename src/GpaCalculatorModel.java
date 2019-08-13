@@ -1,3 +1,5 @@
+import javafx.scene.control.TextField;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,7 +23,7 @@ public class GpaCalculatorModel {
         letterGrade.put("FF", 0.0);
     }
 
-    public double calculateGpa(ArrayList<Lecture> lectures){
+    public void calculateGpa(ArrayList<Lecture> lectures, TextField gpaTextField){
         double creditSum = 0;
         double gradePoint = 0;
 
@@ -30,6 +32,6 @@ public class GpaCalculatorModel {
             gradePoint += lecture.getCredit().getValue() * letterGrade.get(lecture.getLetterGrade().getValue());
         }
 
-        return gradePoint / creditSum;
+        gpaTextField.setText(String.format("%.2f", (gradePoint / creditSum)));
     }
 }
