@@ -32,5 +32,6 @@
             <Insets left="10.0" right="10.0" />
          </VBox.margin>
       </Pane>
+      <Button mnemonicParsing="false" onAction="#newButtonPressed" text="Button" />
    </children>
 </VBox>
