@@ -1,7 +1,9 @@
+package GpaCalculator;
+
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-public class Lecture {
+ public class Lecture {
     private TextField name;
     private ComboBox<String> letterGrade;
     private ComboBox<Double> credit;

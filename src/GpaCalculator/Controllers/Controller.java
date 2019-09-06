@@ -1,4 +1,9 @@
-import Exceptions.MaxRowNumberReachedException;
+package GpaCalculator.Controllers;
+
+import GpaCalculator.Exceptions.MaxRowNumberReachedException;
+import GpaCalculator.Lecture;
+import GpaCalculator.Models.GpaCalculatorModel;
+import GpaCalculator.Validator;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -7,14 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Window;
-
 import java.beans.EventHandler;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Controller {
 

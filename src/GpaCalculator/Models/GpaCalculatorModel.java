@@ -1,5 +1,7 @@
-import javafx.scene.control.TextField;
+package GpaCalculator.Models;
 
+import GpaCalculator.Lecture;
+import javafx.scene.control.TextField;
 import java.util.ArrayList;
 import java.util.HashMap;
 
