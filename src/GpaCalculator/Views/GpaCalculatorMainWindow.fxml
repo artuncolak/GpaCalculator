@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -27,6 +28,11 @@
             <Button layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#addLectureButton" text="Ders Ekle" />
             <Button layoutY="11.0" mnemonicParsing="false" onAction="#calculateGpaButton" text="Hesapla" />
             <TextField fx:id="gpaTextField" editable="false" layoutY="51.0" />
+            <CheckBox fx:id="calculateGpaCheckBox" layoutX="74.0" layoutY="15.0" mnemonicParsing="false" onAction="#calculateGpaCheckBoxChecked" text="GNO Hesapla" />
+            <TextField fx:id="currentGpaTextField" disable="true" layoutX="364.0" layoutY="11.0" prefHeight="25.0" prefWidth="44.0" />
+            <Text fx:id="currentGpaText" layoutX="261.0" layoutY="28.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Mevcut Ortalama:" />
+            <TextField fx:id="currentCreditSumTextField" disable="true" layoutX="364.0" layoutY="39.0" prefHeight="25.0" prefWidth="44.0" />
+            <Text fx:id="currentCreditSumText" layoutX="240.0" layoutY="56.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Mevcut Toplam Kredi:" />
          </children>
          <VBox.margin>
             <Insets left="10.0" right="10.0" />

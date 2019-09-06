@@ -7,11 +7,10 @@ import GpaCalculator.Validator;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+
 import java.beans.EventHandler;
 import java.util.ArrayList;
 
@@ -21,6 +20,16 @@ public class Controller {
     private GridPane lecturesPane;
     @FXML
     private TextField gpaTextField;
+    @FXML
+    private TextField currentGpaTextField;
+    @FXML
+    private TextField currentCreditSumTextField;
+    @FXML
+    private CheckBox calculateGpaCheckBox;
+    @FXML
+    private Text currentGpaText;
+    @FXML
+    private Text currentCreditSumText;
 
     private GpaCalculatorModel gpaCalculatorModel = new GpaCalculatorModel();
 
@@ -135,6 +144,20 @@ public class Controller {
         }
     }
 
+    public void calculateGpaCheckBoxChecked(){
+        if (calculateGpaCheckBox.isSelected()){
+            currentCreditSumTextField.setDisable(false);
+            currentGpaTextField.setDisable(false);
+            currentGpaText.setOpacity(1);
+            currentCreditSumText.setOpacity(1);
+        }else{
+            currentCreditSumTextField.setDisable(true);
+            currentGpaTextField.setDisable(true);
+            currentGpaText.setOpacity(0.5);
+            currentCreditSumText.setOpacity(0.5);
+        }
+    }
+
     private void addLecture() {
         TextField lectureName = new TextField();
         lectureName.setPromptText("Ders Adı");
@@ -172,6 +195,8 @@ public class Controller {
         for (Node node : lecturesPane.getChildren()){
             int rowIndex = GridPane.getRowIndex(node);
 
+            //If rowIndex of node is equals to rowIndex of wanted node for deletion add it to deleteNodes list
+            //else decrement rowIndex of node for 1.
             if (rowIndex == row){
                 deleteNodes.add(node);
             }else if(rowIndex > row){
@@ -179,6 +204,7 @@ public class Controller {
             }
         }
 
+        //Destroy the nodes ( •̀ᴗ•́ )
         lecturesPane.getChildren().removeAll(deleteNodes);
         lectures.remove(row);
         this.row = lectures.size();
