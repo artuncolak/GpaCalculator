@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.Pane?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GpaCalculator.Controllers.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GpaCalculator.Controllers.Controller">
    <children>
       <GridPane fx:id="lecturesPane" alignment="TOP_CENTER" hgap="5.0" prefHeight="111.0" prefWidth="416.0" style="-fx-background-color: lightgrey;" vgap="5.0">
          <VBox.margin>
@@ -23,16 +23,19 @@
             <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="75.0" />
          </columnConstraints>
       </GridPane>
-      <Pane prefHeight="101.0" prefWidth="480.0">
+      <Pane prefHeight="125.0" prefWidth="480.0">
          <children>
             <Button layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#addLectureButton" text="Ders Ekle" />
             <Button layoutY="11.0" mnemonicParsing="false" onAction="#calculateGpaButton" text="Hesapla" />
-            <TextField fx:id="gpaTextField" editable="false" layoutY="51.0" />
-            <CheckBox fx:id="calculateGpaCheckBox" layoutX="74.0" layoutY="15.0" mnemonicParsing="false" onAction="#calculateGpaCheckBoxChecked" text="GNO Hesapla" />
-            <TextField fx:id="currentGpaTextField" disable="true" layoutX="364.0" layoutY="11.0" prefHeight="25.0" prefWidth="44.0" />
-            <Text fx:id="currentGpaText" layoutX="261.0" layoutY="28.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Mevcut Ortalama:" />
-            <TextField fx:id="currentCreditSumTextField" disable="true" layoutX="364.0" layoutY="39.0" prefHeight="25.0" prefWidth="44.0" />
-            <Text fx:id="currentCreditSumText" layoutX="240.0" layoutY="56.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Mevcut Toplam Kredi:" />
+            <TextField fx:id="gpaResultTextField" editable="false" layoutX="121.0" layoutY="51.0" prefHeight="25.0" prefWidth="44.0" />
+            <CheckBox fx:id="calculateCumulativeGpaCheckBox" layoutX="74.0" layoutY="15.0" mnemonicParsing="false" onAction="#calculateCumulativeGpaCheckBoxChecked" text="GNO Hesapla" />
+            <TextField fx:id="currentCumulativeGpaTextField" disable="true" layoutX="415.0" layoutY="51.0" prefHeight="25.0" prefWidth="64.0" />
+            <Text fx:id="currentCumulativeGpaText" layoutX="312.0" layoutY="68.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Mevcut Ortalama:" />
+            <TextField fx:id="currentCreditSumTextField" disable="true" layoutX="415.0" layoutY="87.0" prefHeight="25.0" prefWidth="64.0" />
+            <Text fx:id="currentCreditSumText" layoutX="291.0" layoutY="104.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Mevcut Toplam Kredi:" />
+            <Text layoutX="1.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dönem Ortalaması" />
+            <TextField fx:id="cumulativeGpaResultTextField" disable="true" editable="false" layoutX="121.0" layoutY="87.0" prefHeight="25.0" prefWidth="44.0" />
+            <Text fx:id="cumulativeGpaResultText" layoutY="104.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Genel Not Ortalaması" />
          </children>
          <VBox.margin>
             <Insets left="10.0" right="10.0" />

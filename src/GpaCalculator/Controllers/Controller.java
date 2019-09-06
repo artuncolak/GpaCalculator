@@ -19,17 +19,21 @@ public class Controller {
     @FXML
     private GridPane lecturesPane;
     @FXML
-    private TextField gpaTextField;
+    private TextField gpaResultTextField;
     @FXML
-    private TextField currentGpaTextField;
+    private TextField currentCumulativeGpaTextField;
     @FXML
     private TextField currentCreditSumTextField;
     @FXML
-    private CheckBox calculateGpaCheckBox;
+    private CheckBox calculateCumulativeGpaCheckBox;
     @FXML
-    private Text currentGpaText;
+    private Text currentCumulativeGpaText;
     @FXML
     private Text currentCreditSumText;
+    @FXML
+    private Text cumulativeGpaResultText;
+    @FXML
+    private TextField cumulativeGpaResultTextField;
 
     private GpaCalculatorModel gpaCalculatorModel = new GpaCalculatorModel();
 
@@ -134,7 +138,7 @@ public class Controller {
 
     public void calculateGpaButton(){
         try{
-            gpaCalculatorModel.calculateGpa(lectures, gpaTextField);
+            gpaCalculatorModel.calculateGpa(lectures, gpaResultTextField);
         }catch (NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Hata");
@@ -144,17 +148,22 @@ public class Controller {
         }
     }
 
-    public void calculateGpaCheckBoxChecked(){
-        if (calculateGpaCheckBox.isSelected()){
+    //CheckBox Handler
+    public void calculateCumulativeGpaCheckBoxChecked(){
+        if (calculateCumulativeGpaCheckBox.isSelected()){
             currentCreditSumTextField.setDisable(false);
-            currentGpaTextField.setDisable(false);
-            currentGpaText.setOpacity(1);
+            currentCumulativeGpaTextField.setDisable(false);
+            cumulativeGpaResultTextField.setDisable(false);
+            currentCumulativeGpaText.setOpacity(1);
             currentCreditSumText.setOpacity(1);
+            cumulativeGpaResultText.setOpacity(1);
         }else{
             currentCreditSumTextField.setDisable(true);
-            currentGpaTextField.setDisable(true);
-            currentGpaText.setOpacity(0.5);
+            currentCumulativeGpaTextField.setDisable(true);
+            cumulativeGpaResultTextField.setDisable(true);
+            currentCumulativeGpaText.setOpacity(0.5);
             currentCreditSumText.setOpacity(0.5);
+            cumulativeGpaResultText.setOpacity(0.5);
         }
     }
 
@@ -191,10 +200,8 @@ public class Controller {
     private void removeLecture(int row){
         ArrayList<Node> deleteNodes = new ArrayList<>();
 
-        //Decrease row index of every node but selected node for deletion.
         for (Node node : lecturesPane.getChildren()){
             int rowIndex = GridPane.getRowIndex(node);
-
             //If rowIndex of node is equals to rowIndex of wanted node for deletion add it to deleteNodes list
             //else decrement rowIndex of node for 1.
             if (rowIndex == row){

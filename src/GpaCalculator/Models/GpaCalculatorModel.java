@@ -25,7 +25,7 @@ public class GpaCalculatorModel {
         letterGrade.put("FF", 0.0);
     }
 
-    public void calculateGpa(ArrayList<Lecture> lectures, TextField gpaTextField){
+    public void calculateGpa(ArrayList<Lecture> lectures, TextField gpaResultTextField){
         double creditSum = 0;
         double gradePoint = 0;
 
@@ -34,6 +34,6 @@ public class GpaCalculatorModel {
             gradePoint += lecture.getCredit().getValue() * letterGrade.get(lecture.getLetterGrade().getValue());
         }
 
-        gpaTextField.setText(String.format("%.2f", (gradePoint / creditSum)));
+        gpaResultTextField.setText(String.format("%.2f", (gradePoint / creditSum)));
     }
 }
