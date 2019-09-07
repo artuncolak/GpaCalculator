@@ -138,7 +138,12 @@ public class Controller {
 
     public void calculateGpaButton(){
         try{
-            gpaCalculatorModel.calculateGpa(lectures, gpaResultTextField);
+            if (calculateCumulativeGpaCheckBox.isSelected()){
+                gpaCalculatorModel.calculateCumulativeGpa(lectures, gpaResultTextField, currentCumulativeGpaTextField,
+                        currentCreditSumTextField, cumulativeGpaResultTextField);
+            }else{
+                gpaCalculatorModel.calculateGpa(lectures, gpaResultTextField);
+            }
         }catch (NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Hata");

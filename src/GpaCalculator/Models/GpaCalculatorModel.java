@@ -2,6 +2,8 @@ package GpaCalculator.Models;
 
 import GpaCalculator.Lecture;
 import javafx.scene.control.TextField;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,7 +27,7 @@ public class GpaCalculatorModel {
         letterGrade.put("FF", 0.0);
     }
 
-    public void calculateGpa(ArrayList<Lecture> lectures, TextField gpaResultTextField){
+    public void calculateGpa(ArrayList<Lecture> lectures, TextField gpaResult){
         double creditSum = 0;
         double gradePoint = 0;
 
@@ -34,6 +36,28 @@ public class GpaCalculatorModel {
             gradePoint += lecture.getCredit().getValue() * letterGrade.get(lecture.getLetterGrade().getValue());
         }
 
-        gpaResultTextField.setText(String.format("%.2f", (gradePoint / creditSum)));
+        gpaResult.setText(String.format("%.2f", (gradePoint / creditSum)));
+    }
+
+
+    public void calculateCumulativeGpa(ArrayList<Lecture> lectures, TextField gpaResult,
+                                       TextField currentCumulativeGpa, TextField currentCreditSum,
+                                       TextField cumulativeGpaResult){
+        double creditSum = 0;
+        double totalCreditSum = 0;
+        double gradePoint = 0;
+        double totalGradePoint = 0;
+
+        for (Lecture lecture : lectures) {
+            creditSum += lecture.getCredit().getValue();
+            gradePoint += lecture.getCredit().getValue() * letterGrade.get(lecture.getLetterGrade().getValue());
+        }
+
+        totalGradePoint = gradePoint + Double.parseDouble(currentCumulativeGpa.getText()) *
+                Double.parseDouble(currentCreditSum.getText());
+        totalCreditSum = creditSum + Double.parseDouble(currentCreditSum.getText());
+
+        gpaResult.setText(String.format("%.2f", (gradePoint / creditSum)));
+        cumulativeGpaResult.setText(String.format("%.2f", (totalGradePoint / totalCreditSum)));
     }
 }
