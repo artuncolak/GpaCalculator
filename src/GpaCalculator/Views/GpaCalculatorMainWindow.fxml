@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GpaCalculator.Controllers.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GpaCalculator.Controllers.Controller">
    <children>
-      <GridPane fx:id="lecturesPane" alignment="TOP_CENTER" hgap="5.0" prefHeight="111.0" prefWidth="416.0" style="-fx-background-color: lightgrey;" vgap="5.0">
+      <GridPane fx:id="lecturesPane" alignment="TOP_CENTER" hgap="5.0" prefHeight="111.0" prefWidth="416.0" style="-fx-background-color: #424242; -fx-background-radius: 2;" vgap="5.0">
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
          <padding>
-            <Insets bottom="10.0" top="10.0" />
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
          </padding>
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="260.0" />
@@ -22,19 +25,22 @@
             <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="75.0" />
          </columnConstraints>
+         <opaqueInsets>
+            <Insets right="15.0" />
+         </opaqueInsets>
       </GridPane>
-      <Pane prefHeight="125.0" prefWidth="480.0">
+      <Pane prefHeight="125.0" prefWidth="480.0" style="-fx-background-color: white;">
          <children>
-            <Button layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#addLectureButton" text="Ders Ekle" />
-            <Button layoutY="11.0" mnemonicParsing="false" onAction="#calculateGpaButton" text="Hesapla" />
-            <TextField fx:id="gpaResultTextField" editable="false" layoutX="121.0" layoutY="51.0" prefHeight="25.0" prefWidth="44.0" />
-            <CheckBox fx:id="calculateCumulativeGpaCheckBox" layoutX="74.0" layoutY="15.0" mnemonicParsing="false" onAction="#calculateCumulativeGpaCheckBoxChecked" text="GNO Hesapla" />
-            <TextField fx:id="currentCumulativeGpaTextField" disable="true" layoutX="415.0" layoutY="51.0" prefHeight="25.0" prefWidth="64.0" />
+            <Button fx:id="addLectureButton" layoutX="415.0" layoutY="11.0" mnemonicParsing="false" onAction="#addLectureButton" style="-fx-background-color: #424242; -fx-background-radius: 2;" text="Ders Ekle" textFill="WHITE" />
+            <Button fx:id="calculateButton" layoutY="11.0" mnemonicParsing="false" onAction="#calculateGpaButton" style="-fx-background-color: #424242; -fx-background-radius: 2;" text="Hesapla" textFill="WHITE" />
+            <TextField fx:id="gpaResultTextField" editable="false" layoutX="121.0" layoutY="51.0" prefHeight="25.0" prefWidth="44.0" style="-fx-background-color: transparent; -fx-border-color: grey; -fx-border-radius: 2;" />
+            <CheckBox fx:id="calculateCumulativeGpaCheckBox" layoutX="75.0" layoutY="15.0" mnemonicParsing="false" onAction="#calculateCumulativeGpaCheckBoxChecked" text="GNO Hesapla" />
+            <TextField fx:id="currentCumulativeGpaTextField" disable="true" layoutX="415.0" layoutY="51.0" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: transparent; -fx-border-color: grey; -fx-border-radius: 2;" />
             <Text fx:id="currentCumulativeGpaText" layoutX="312.0" layoutY="68.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Mevcut Ortalama:" />
-            <TextField fx:id="currentCreditSumTextField" disable="true" layoutX="415.0" layoutY="87.0" prefHeight="25.0" prefWidth="64.0" />
+            <TextField fx:id="currentCreditSumTextField" disable="true" layoutX="415.0" layoutY="87.0" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: transparent; -fx-border-color: grey; -fx-border-radius: 2;" />
             <Text fx:id="currentCreditSumText" layoutX="291.0" layoutY="104.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Mevcut Toplam Kredi:" />
             <Text layoutX="1.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dönem Ortalaması" />
-            <TextField fx:id="cumulativeGpaResultTextField" disable="true" editable="false" layoutX="121.0" layoutY="87.0" prefHeight="25.0" prefWidth="44.0" />
+            <TextField fx:id="cumulativeGpaResultTextField" disable="true" editable="false" layoutX="121.0" layoutY="87.0" prefHeight="25.0" prefWidth="44.0" style="-fx-background-color: transparent; -fx-border-color: grey; -fx-border-radius: 2;" />
             <Text fx:id="cumulativeGpaResultText" layoutY="104.0" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Genel Not Ortalaması" />
          </children>
          <VBox.margin>

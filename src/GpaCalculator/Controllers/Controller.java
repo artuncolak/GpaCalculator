@@ -8,7 +8,10 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Shadow;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.beans.EventHandler;
@@ -34,6 +37,10 @@ public class Controller {
     private Text cumulativeGpaResultText;
     @FXML
     private TextField cumulativeGpaResultTextField;
+    @FXML
+    private Button addLectureButton;
+    @FXML
+    private Button calculateButton;
 
     private GpaCalculatorModel gpaCalculatorModel = new GpaCalculatorModel();
 
@@ -41,10 +48,19 @@ public class Controller {
     private ArrayList<Double> creditOptions = new ArrayList<>();
     private ArrayList<Lecture> lectures = new ArrayList<>();
 
+    private DropShadow shadow = new DropShadow();
+    private DropShadow shadowInsideGridPane = new DropShadow();
+
     private EventHandler e;
     private int row = 0;
 
     public Controller() {
+        shadow.setWidth(5);
+        shadow.setHeight(13);
+        shadow.setOffsetY(3);
+
+        shadowInsideGridPane.setRadius(5);
+
         initializeCreditOptions();
         initializeLetterGradeOptions();
     }
@@ -104,10 +120,17 @@ public class Controller {
 
     @FXML
     private void initialize() {
+        initializeShadows(shadow);
         //Adding first 3 lectures to lectures pane
         for (int i = 0; i < 3; i++) {
             addLecture();
         }
+    }
+
+    private void initializeShadows(DropShadow shadow){
+        lecturesPane.setEffect(shadow);
+        addLectureButton.setEffect(shadow);
+        calculateButton.setEffect(shadow);
     }
 
     private void increaseWindowSize(int size) {
@@ -123,7 +146,7 @@ public class Controller {
         try {
             Validator.validateRowNumber(row);
             addLecture();
-            if (row > 3) {
+            if (lectures.size() > 3) {
                 increaseWindowSize(30);
             }
         } catch (MaxRowNumberReachedException e) {
@@ -137,7 +160,7 @@ public class Controller {
 
     private void removeLectureButton(int row) {
         removeLecture(row);
-        if (row >= 3) {
+        if (lectures.size() >= 3) {
             decreaseWindowSize(30);
         }
     }
@@ -187,21 +210,29 @@ public class Controller {
 
     private void addLecture() {
         TextField lectureName = new TextField();
+        lectureName.setStyle("-fx-background-color: white; -fx-background-radius: 2");
         lectureName.setPromptText("Ders Adı");
+        lectureName.setEffect(shadowInsideGridPane);
 
         ComboBox<Double> credit = new ComboBox<>();
+        credit.setStyle("-fx-background-color: white; -fx-background-radius: 2");
         credit.setPromptText("Kredi");
         credit.setPrefWidth(100);
         credit.setItems(FXCollections.observableArrayList(creditOptions));
+        credit.setEffect(shadowInsideGridPane);
 
         ComboBox<String> lettergrade = new ComboBox<>();
+        lettergrade.setStyle("-fx-background-color: white;-fx-background-radius: 2");
         lettergrade.setPromptText("Not");
         lettergrade.setPrefWidth(100);
         lettergrade.setItems(FXCollections.observableArrayList(letterGradeOptions));
+        lettergrade.setEffect(shadowInsideGridPane);
 
         Button deleteButton = new Button();
+        deleteButton.setStyle("-fx-background-color: #F44336; -fx-background-radius: 2;");
         deleteButton.setText("Sil");
         deleteButton.setPrefWidth(75);
+        deleteButton.setEffect(shadowInsideGridPane);
 
         lecturesPane.add(lectureName, 0, row);
         lecturesPane.add(credit, 1, row);
