@@ -60,6 +60,7 @@ public class Controller {
         letterGradeOptions.add("FD");
         letterGradeOptions.add("FF");
     }
+
     private void initializeCreditOptions() {
         creditOptions.add(0.5);
         creditOptions.add(1.0);
@@ -109,10 +110,11 @@ public class Controller {
         }
     }
 
-    private void increaseWindowSize(int size){
+    private void increaseWindowSize(int size) {
         lecturesPane.getScene().getWindow().setHeight(lecturesPane.getScene().getWindow().getHeight() + size);
     }
-    private void decreaseWindowSize(int size){
+
+    private void decreaseWindowSize(int size) {
         lecturesPane.getScene().getWindow().setHeight(lecturesPane.getScene().getWindow().getHeight() - size);
     }
 
@@ -121,8 +123,10 @@ public class Controller {
         try {
             Validator.validateRowNumber(row);
             addLecture();
-            increaseWindowSize(30);
-        }catch (MaxRowNumberReachedException e){
+            if (row > 3) {
+                increaseWindowSize(30);
+            }
+        } catch (MaxRowNumberReachedException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Uyarı");
             alert.setHeaderText("Maksimum ders sayısına ulaşıldı.");
@@ -131,27 +135,29 @@ public class Controller {
         }
     }
 
-    private void removeLectureButton(int row){
+    private void removeLectureButton(int row) {
         removeLecture(row);
-        decreaseWindowSize(30);
+        if (row >= 3) {
+            decreaseWindowSize(30);
+        }
     }
 
-    public void calculateGpaButton(){
-        try{
-            if (calculateCumulativeGpaCheckBox.isSelected()){
+    public void calculateGpaButton() {
+        try {
+            if (calculateCumulativeGpaCheckBox.isSelected()) {
 
                 gpaCalculatorModel.calculateCumulativeGpa(lectures, gpaResultTextField, currentCumulativeGpaTextField,
                         currentCreditSumTextField, cumulativeGpaResultTextField);
-            }else{
+            } else {
                 gpaCalculatorModel.calculateGpa(lectures, gpaResultTextField);
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Hata");
             alert.setHeaderText(null);
             alert.setContentText("Ders kredisi ve notu boş bırakılamaz.");
             alert.showAndWait();
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Hata");
             alert.setHeaderText(null);
@@ -161,15 +167,15 @@ public class Controller {
     }
 
     //CheckBox Handler
-    public void calculateCumulativeGpaCheckBoxChecked(){
-        if (calculateCumulativeGpaCheckBox.isSelected()){
+    public void calculateCumulativeGpaCheckBoxChecked() {
+        if (calculateCumulativeGpaCheckBox.isSelected()) {
             currentCreditSumTextField.setDisable(false);
             currentCumulativeGpaTextField.setDisable(false);
             cumulativeGpaResultTextField.setDisable(false);
             currentCumulativeGpaText.setOpacity(1);
             currentCreditSumText.setOpacity(1);
             cumulativeGpaResultText.setOpacity(1);
-        }else{
+        } else {
             currentCreditSumTextField.setDisable(true);
             currentCumulativeGpaTextField.setDisable(true);
             cumulativeGpaResultTextField.setDisable(true);
@@ -209,16 +215,16 @@ public class Controller {
         row++;
     }
 
-    private void removeLecture(int row){
+    private void removeLecture(int row) {
         ArrayList<Node> deleteNodes = new ArrayList<>();
 
-        for (Node node : lecturesPane.getChildren()){
+        for (Node node : lecturesPane.getChildren()) {
             int rowIndex = GridPane.getRowIndex(node);
             //If rowIndex of node is equals to rowIndex of wanted node for deletion add it to deleteNodes list
             //else decrement rowIndex of node for 1.
-            if (rowIndex == row){
+            if (rowIndex == row) {
                 deleteNodes.add(node);
-            }else if(rowIndex > row){
+            } else if (rowIndex > row) {
                 GridPane.setRowIndex(node, (rowIndex - 1));
             }
         }
