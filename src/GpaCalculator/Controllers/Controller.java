@@ -139,6 +139,7 @@ public class Controller {
     public void calculateGpaButton(){
         try{
             if (calculateCumulativeGpaCheckBox.isSelected()){
+
                 gpaCalculatorModel.calculateCumulativeGpa(lectures, gpaResultTextField, currentCumulativeGpaTextField,
                         currentCreditSumTextField, cumulativeGpaResultTextField);
             }else{
@@ -149,6 +150,12 @@ public class Controller {
             alert.setTitle("Hata");
             alert.setHeaderText(null);
             alert.setContentText("Ders kredisi ve notu boş bırakılamaz.");
+            alert.showAndWait();
+        }catch (NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Hata");
+            alert.setHeaderText(null);
+            alert.setContentText("Mevcut ortalama veya mevcut toplam kredi boş bırakılamaz veya sayı dışında bir şey girilemez.");
             alert.showAndWait();
         }
     }
